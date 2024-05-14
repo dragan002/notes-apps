@@ -12,6 +12,5 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-
-Route::resource('\notes', NoteController::class)->middleware(['auth']);
+Route::resource('/notes', NoteController::class)->middleware(['auth']);
 require __DIR__.'/auth.php';
