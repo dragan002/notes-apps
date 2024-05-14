@@ -10,8 +10,12 @@
 
             <form action="{{ route('notes.store') }}" method="post">
                 @csrf
-                <x-text-input type="text" class="w-full" autocomplete="off" name="title" placeholder="Title"></x-text-input>
-                <x-text-input name="text" rows="20" placeholder="Start typing here" class="w-full"></x-text-input>
+                <x-text-input field="title" type="text" class="w-full" autocomplete="off" placeholder="Title"></x-text-input>
+                <x-input-error :messages="$errors->get('title')" />
+
+                <x-text-input field="text" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm" rows="20" placeholder="Start typing here"></x-text-input>
+                <x-input-error :messages="$errors->get('text')" />
+
                 <x-danger-button class="mt-6">Save Note</x-danger-button>
             </form>
         </div>
