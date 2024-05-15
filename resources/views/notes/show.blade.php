@@ -15,9 +15,12 @@
                 <p class="opacity-70 ml-8 text-white">
                     <strong>Updated At: {{ $note->updated_at->diffForHumans() }}</strong>
                 </p>
+
+                <a href="{{ route('notes.edit', $note) }}" class="btn-link ml-auto">Edit Note</a>
+
             </div>
 
-                <div class="my-6 p-6 mb-4 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
+            <div class="my-6 p-6 mb-4 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                     <h2 class="font-bold text-4xl">
                         {{ $note->title }}
                     </h2>
@@ -27,4 +30,5 @@
                 </div>
         </div>
     </div>
+
 </x-app-layout>
