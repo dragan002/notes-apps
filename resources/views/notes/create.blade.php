@@ -18,9 +18,7 @@
                               placeholder="Title"
                               :value="@old('title')"
                 ></x-text-input>
-{{--                @error('title')--}}
-{{--                    <div class="text-red-600 text-sm">{{ $message }}<div>--}}
-{{--                @enderror--}}
+
 
                 <x-textarea field="text"
                             class="w-full"
@@ -29,9 +27,7 @@
                             placeholder="Start typing here"
                             :value="@old('text')"
                 ></x-textarea>
-{{--                @error('text')--}}
-{{--                            <div class="text-red-600"> {{$message}}</div>--}}
-{{--                @enderror--}}
+
                 <x-danger-button class="mt-6">Save Note</x-danger-button>
             </form>
         </div>
