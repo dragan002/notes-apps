@@ -15,6 +15,7 @@
                     <h2 class="font-bold text-2xl">
                         {{ $note->title }}
                     </h2>
+
                     <p class="mt-2">
                         {{ Str::limit($note->text, 200) }}
                     </p>
