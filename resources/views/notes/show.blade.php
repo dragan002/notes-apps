@@ -7,6 +7,9 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <x-alert-success>
+                {{session('success')}}
+            </x-alert-success>
             <div class="flex">
                 <p class="opacity-70 text-white">
                     <strong>Created At: {{ $note->created_at->diffForHumans() }}</strong>
