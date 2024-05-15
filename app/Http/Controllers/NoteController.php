@@ -74,15 +74,29 @@ class NoteController extends Controller
             return abort(403);
         }
         return view('notes.edit')->with('note', $note);
-        
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Note $note)
     {
         //
+        if($note->user_id != Auth::id()) {
+            return abort(403);
+        }
+
+        $request->validate([
+            'title' => 'required|max:120',
+            'text' => 'required'
+        ]);
+
+        $note->update([
+            'title'=>$request->title,
+            'text'=>$request->text
+        ]);
+        return to_route('notes.show', $note);
     }
 
     /**
