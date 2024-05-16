@@ -11,8 +11,12 @@ class Note extends Model
 
     protected $guarded = [];
 
-    public function getRouteKeyName()
+    public function getRouteKeyName(): string
     {
         return 'uuid';
+    }
+
+    public function user() {
+        return $this->belongsTo(User::class);
     }
 }
