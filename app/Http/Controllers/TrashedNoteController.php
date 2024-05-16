@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 class TrashedNoteController extends Controller
 {
     //
-    public function index(): string
+    public function index()
     {
         $notes = Note::whereBelongsTo(Auth::user())->onlyTrashed()->latest('deleted_at')->paginate(5);
         return view('notes.index')->with('notes', $notes);
@@ -33,6 +33,14 @@ class TrashedNoteController extends Controller
         }
     $note->restore();
         return to_route('notes.show', $note)->with('success', 'Note Restored ');
+    }
+    public function destroy(Note $note) {
+        if(!$note->user->is(Auth::user())) {
+            return abort(403);
+        }
+        $note->forceDelete();
+        return to_route('trashed.index')->with('success', 'Note deleted forever ');
+
     }
 
 }

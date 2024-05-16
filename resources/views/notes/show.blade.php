@@ -43,11 +43,11 @@
 
 {{--                    <a href="{{ route('notes.edit', $note) }}" class="btn-link ml-auto">Edit Note</a>--}}
 
-{{--                    <form action="{{ route('notes.destroy', $note) }}" method="post">--}}
-{{--                        @method('delete')--}}
-{{--                        @csrf--}}
-{{--                        <button type="submit" class="btn btn-danger ml-4" onclick="return confirm('Are you sure you want to delete this note?')">Move to trash</button>--}}
-{{--                    </form>--}}
+                    <form action="{{ route('trashed.destroy', $note) }}" method="post">
+                        @method('delete')
+                        @csrf
+                        <button type="submit" class="btn btn-danger ml-4" onclick="return confirm('Are you sure you want to delete this note forever this action cant be undone?')">Delete forever</button>
+                    </form>
                 @endif
 
             </div>
