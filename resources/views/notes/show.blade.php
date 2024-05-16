@@ -18,7 +18,7 @@
                 </p>
 
                 <p class="opacity-70 ml-8 text-white">
-                    <strong>Updated At: {{ $note->updated_at->diffForHumans() }}</strong>
+                    <strong>Updated: {{ $note->updated_at->diffForHumans() }}</strong>
                 </p>
 
                 <a href="{{ route('notes.edit', $note) }}" class="btn-link ml-auto">Edit Note</a>
@@ -31,17 +31,23 @@
                  @else
 
                     <p class="opacity-70 text-white">
-                        <strong>Deleted At: {{ $note->deleted_at->diffForHumans() }}</strong>
+                        <strong>Deleted: {{ $note->deleted_at->diffForHumans() }}</strong>
                     </p>
 
-
-                    <a href="{{ route('notes.edit', $note) }}" class="btn-link ml-auto">Edit Note</a>
-
-                    <form action="{{ route('notes.destroy', $note) }}" method="post">
-                        @method('delete')
+                    <form action="{{ route('trashed.update', $note) }}" method="post" class="ml-auto">
+                        @method('put')
                         @csrf
-                        <button type="submit" class="btn btn-danger ml-4" onclick="return confirm('Are you sure you want to delete this note?')">Move to trash</button>
+                        <button type="submit" class="btn-link">Restore Note</button>
                     </form>
+
+
+{{--                    <a href="{{ route('notes.edit', $note) }}" class="btn-link ml-auto">Edit Note</a>--}}
+
+{{--                    <form action="{{ route('notes.destroy', $note) }}" method="post">--}}
+{{--                        @method('delete')--}}
+{{--                        @csrf--}}
+{{--                        <button type="submit" class="btn btn-danger ml-4" onclick="return confirm('Are you sure you want to delete this note?')">Move to trash</button>--}}
+{{--                    </form>--}}
                 @endif
 
             </div>
