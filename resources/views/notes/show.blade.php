@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Notes') }}
+            {{ !$note->trashed() ? __('Notes') : __('Trash') }}
         </h2>
     </x-slot>
 
@@ -10,7 +10,9 @@
             <x-alert-success>
                 {{session('success')}}
             </x-alert-success>
+
             <div class="flex">
+                @if(!$note->trashed())
                 <p class="opacity-70 text-white">
                     <strong>Created At: {{ $note->created_at->diffForHumans() }}</strong>
                 </p>
@@ -26,6 +28,22 @@
                     @csrf
                     <button type="submit" class="btn btn-danger ml-4" onclick="return confirm('Are you sure you want to delete this note?')">Move to trash</button>
                 </form>
+                 @else
+
+                    <p class="opacity-70 text-white">
+                        <strong>Deleted At: {{ $note->deleted_at->diffForHumans() }}</strong>
+                    </p>
+
+
+                    <a href="{{ route('notes.edit', $note) }}" class="btn-link ml-auto">Edit Note</a>
+
+                    <form action="{{ route('notes.destroy', $note) }}" method="post">
+                        @method('delete')
+                        @csrf
+                        <button type="submit" class="btn btn-danger ml-4" onclick="return confirm('Are you sure you want to delete this note?')">Move to trash</button>
+                    </form>
+                @endif
+
             </div>
 
             <div class="my-6 p-6 mb-4 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
